@@ -1,0 +1,49 @@
+\chapter{Gestion de projet}
+
+Aprés une semaine passé à essayer de mettre en place une solution technique élégante, il est apparu évident pour mon tuteur que nous devions definir une methodologie pour construire l'outils de modélisation. Au seins de l'equipe IT de LesFurets.com, une methodologie Agile type Kanban à été mise en place.
+
+\section{Agile}
+Les méthodes agiles sont des groupes de pratiques de projets de développement en informatique (conception de logiciel), pouvant s'appliquer à divers types de projets. Elles ont pour dénominateur commun l'Agile manifesto. Rédigé en 2001, celui-ci consacre le terme d'« agile » pour référencer de multiples méthodes existantes. Les méthodes agiles se veulent plus pragmatiques que les méthodes traditionnelles. Elles impliquent au maximum le demandeur (client) et permettent une grande réactivité à ses demandes. Elles visent la satisfaction réelle du client en priorité aux termes d'un contrat de développement.
+Les méthodes agiles reposent sur une structure (cycle de développement) commune (itérative, incrémentale et adaptative), quatre valeurs communes déclinées en douze principes communs desquels découlent une base de pratiques, soit communes, soit complémentaires.
+Les méthodes pouvant se qualifier d'agile depuis la publication de l'agile manifesto sont le RAD (développement rapide d'applications) (1991) avec DSDM, la version anglaise du RAD (1995) ainsi que plusieurs autres méthodes, comme ASD ou FDD qui reconnaissent leur parenté directe avec RAD. Les deux méthodes agiles désormais les plus utilisées sont : la méthode Scrum qui fut présentée en 1995 par Ken Schwaber1puis publiée en 2001 par lui même et Mike Beedle pour enfin être diffusée mondialement par Jeff Sutherland ainsi que la méthode XP Extreme programming publiée en 1999 par Kent Beck.
+Un mouvement plus large (management agile) couple les valeurs agiles aux techniques de l'amélioration continue de la qualité (plus particulièrement le Lean). On constate un élargissement de l'utilisation d'agile à l'ensemble de la structure de l'entreprise/
+
+\section{Kanban}
+Kanban est un terme japonais signifiant « fiche » ou « étiquette ».
+Cette méthode a été initialement mise en place dans les usines Toyota fin dans les années 60.
+Parmi les outils agiles, Scrum et Kanban sont aujourd'hui les plus utilisés dans le cadre de la réalisation de projets informatiques.Ce sont tous deux des outils de processus mais néanmoins bien différents.Il est à noter que Kanban est plus adaptatif que Scrum qui fixe un cadre de travail plus rigide.
+
+L'approche Kanban consiste globalement à visualiser le Workflow (Le processus de traitement d'une tâche). On met en place un tableau de bord des items (demandes). Chaque item est placé à un instant donné dans un état. L'item évolue jusqu'à ce qu'il soit soldé. Chaque état du tableau peut contenir un nombre maximum prédéfini de tâches simultanées (défini selon les capacités de l'équipe) : on limite ainsi le WIP (Work In Progress). Il est primordial, pendant l'exécution des tâches, de mesurer le "lead-time". Il s'agit du temps moyen pour compléter un item.Cette durée sera progressivement de plus en plus courte et prévisible.
+
+Les intérêts de la mise en place de cet outil Kanban sont principalement :
+\begin{itemize}
+\item 
+Possibilité de mise en place progressive de la méthodologie Agile (moins directif que Scrum)
+Les points de blocages sont visibles très tôt. La collaboration dans l'équipe est encouragée pour résoudre les problèmes de manière corrective, le plus tôt possible.
+\item
+On peut se passer de la notion de sprint. Un sprint d'une ou deux semaines n'est pas envisageable dans certains cas de figure (réactivité supérieure exigée). La méthodologie Kanban est donc utilisée dans des services de support au client (gestion des tickets d'incidents).
+\item
+Facilité de communication sur l'état d'avancement du projet.
+\item 
+La Définition du Done (Ensemble de critères permettant de considérer la tâche comme traitée) permet de garantir un niveau de qualité constant et défini de manière collective.
+\end{itemize}
+
+\section{Kanban chez lesFurets}
+Depuis 3 ans lesFurets utilisent la méthodologie Kanban.
+Toutes les taches sont gérer depuis JIRA, un logiciel disponible depuis un client web. JIRA permet la création de tickets qui correspondent a des taches. Ces taches peuvent etre attribuer aux personnels de l'IT traiter, peuvent changer d'etat. Le processus décrit dans le tableau KANBAN est automatisé pour les tickets et une vue sous forme de tableau KANBAN est disponible. Mais pour autant il existe un tableau physique représentant les taches et leur état pour respecter le concept de management visuel.
+
+\section{Integration continu}
+La culture desFurets est de tres Test Driven Development c'est a dire que des tests sont developper avec chaque features deployer. C'est ainsi qu'a chaque fois qu'un developper termine une fonctionnalité, les modifications doivent passer la batteries de test complete. C'est l'integration continue, ce processus est permis grace à l'automatisati
+
+\section{Deploiement continu}
+De plus lesFurets ont aussi adopté une attitude tres DevOps. Devops est un mouvement visant à réduire la friction organisationnelle entre les "devs" (chargés de faire évoluer le système d'information) et les "ops" (chargés d'exploiter les applications existantes).
+Ce que l'on pourrait résumer en travailler ensemble pour produire de la valeur pour l'entreprise. Dans la majorité des entreprises, la valeur sera économique mais pour d'autres elle sera sociale ou morale. C'est ainsi que les mises en production sont realisé par les developpeurs, il m'est arriver de mettre en productions des fonctionnalités que j'avais developpés à plusieurs reprises
+
+\section{Feature Branch}
+Enfin pour assurer une developpement optimale de chaque fonctionnalité la methodologie utilisé est Feature Branch. Chaque nouvelle fonctionnalité developé est developpé à partir de la derniere version du master. Une fois le developmment terminée la branche doit passer par une mecanisme d'octopus qui permet de detecter des conflits present avec d'autre developpement en cours. 
+
+\section{Ma methodologie}
+En vue de toute l'architecture mise en place chez lesFurets il m'a fallu m'adapter pour pouvoir developper l'outil tout en respectant l'eco systeme mise en place et pouvoir profiter des avantages produitzs par le workflow mise en place.
+
+Tout d'abord lors d'un BBL (une conference pendant la pause dejeuner) j'ai entendu parler du Kanban "Perso" qui etait exempt de certaines regles du Kanban. Par la suite une des personnes faisant partie de l'equipe dont je faisait partie m'a pris en main pour poser les bases de mon workflow. C'est ainsi que sur un tableau kanban personnel (informatiser à l'aide de Trello) je me suis imposer des colonnes 
+\begin{center}Backlog | To Do | Doing | Done\end{center}

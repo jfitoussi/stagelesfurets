@@ -1,0 +1,65 @@
+\chapter{Solution}
+
+\section{Eclipse : Sirius}
+Les premiers début du développement d’un modele pour Eclipse Sirius fut très fastidieux, après avoir passé un bout de temps sur le tutorial présent sur le site je me suis confronté a un manque d’autres exemples me permettant de vraiment prendre en main Sirius.
+
+\section{Page de maintenance Web : Javascript}
+Ma premier demarche a été de trouver une bibliotheque capable de dessiner un gros graph orienté cyclique.
+Mon premier choix s’est porté sur d3.js qui est surement la bibliotheque la plus populaire pour tracer des graphes. Seulement celle-ci est performante pour creer des graph batton, camembert, blabla
+J’ai ensuite fait le choix de m’orienter vers google pour definir la library a utiliser, qui m’a rediriger vers une question similaire sur stackoverflow. J’ai eu le droit a un comparatif complet des existent sur le net, avec leur avantages et inconvenient. Mon choix s’est porter sur cytoscape.js. Cytoscape avait l’avantage de realiser rapidement un graph similaire a mes besoin avec une integration avec jQuery et/ou Angular pour la manipulation du DOM. Il est de plus sous licence GPL ce qui en faisait un projet open source interessant pour moi. De plus Cytoscape propose par default une dizaine de layout utilisable pour explorer de differentes maniere le graph
+
+\section{Cytoscape.js + Features}
+Comme explicité precedement Cytoscape permet d’utiliser jQuery et/ou AngularJS dans la manipulation du dom. C’est ainsi qu’une fois que j’ai reussi a generer le graph de dependance des champs du formulaire sous forme de tableau JSON interpretable par Cytoscape j’ai pu mettre en place des mecanismes asynchrone pour regenerer le graph.
+
+\subsection{Zoomer, Déplacer les éléments, Se déplacer}
+Une fois le graph afficher il m’a paru essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer et déplacer les éléments du graph
+
+\subsection{Choix du tunnel}
+La premiere fonctionnalité que j’ai voulu implementer etait de pouvoir cliquer sur un boutton pour afficher le formulaire rechercher et de recalculer le graph sans changer de page. Je me suis servi des mecanismes proposer par la bibliotheque et Angular pour faire un appel serveur asynchrone pour recharger le graph.
+
+\subsection{Changement du layout}
+De la meme maniere que pour l’affichage d’un tunnel different, pour le recalcul en fonction du layout, je me suis servi des mecanismes de AngularJS
+
+\subsection{Recherche d’un champs et autocompletion}
+Pour pouvoir rendre l’outil plus user-friendly, j’ai decider de proposer aux utilisateur de pouvoir rechercher une question parmis les question proposer et ainsi pouvoir zoomer sur celle-ci sans avoir a les rechercher visuellement
+
+\subsection{Champs du formulaire}
+Dans un premier temps l’idée etait de pouvoir differencier les champs du formulaire et les faire ressembler aux champs du site
+
+\subsection{Disposition du graph}
+Par la suite il a fallu reprendre le graph pour le faire ressembler a un formulaire du site
+
+\subsection{Modification des elements et des dependances}
+Une fois le graph ressemblant au formulaire present sur le site il a fallu mettre en place une fonction de modifications des elements du graph. Et une fonction de modifications des dependances entre les champs.
+
+\subsection{Modification du label du champs}
+La premiere fonction était sans doute celle qui avait le moins d’incidence sur le formulaire. On peut juste changer le label afficher sur le formulaire
+
+\subsection{Modification type du champs}
+On peut à l’aide d’une autocompletion avoir accés a tous les types de champs present sur le tunnel et modifier le type du champs sur lequel on est
+
+\subsection{Suppression d’une dependance}
+Il s’agit juste de mettre en evidence les champs touché par la suppression d’une dependances. Les dependances ne sont pas interdependantes.
+
+\subsection{Sauvegarde etat du graph}
+Une fois les fonctions de modifications mise en place il a paru evident qu’il a fallait pouvoir sauvegarder l’etat du graph modifié pour pouvoir l’envoyer par la suite.
+La premiere approche simple était de pouvoir faire une capture d’ecran de l’etat du graph dans une resolution assez grande pouvoir voit toute les details du formulaire.
+La seconde approche fut de sauvegarder un fichier JSON avec toutes les données modifié ainsi que les position des champs
+
+\subsection{Charger un graph}
+Une fois les graph sauvegardable il a fallu pouvoir les reafficher a l’aide d’un module d’import. Une balise input file et un recalcul du graph nous a permis d’implementer cette fonction rapidement
+
+\subsection{Affichage des differences}
+Une fois le graph importer nous avons voulu aussi proposer une visualisation des differences avec la version presente et une version importer.
+
+\subsection{Not User-friendly}
+Les furets mette leur site en production de maniere quotidienne, il nous a paru pertinent comme fonctionnalité de pouvoir affichage la presence de difference entre le graph en de la version du site en production et la version a mettre en production sans passer par l’interface graphique. Ainsi on proposera une liste au format texte des differences entre ces deux versions.
+
+\section{Données Business}
+
+\subsection{Récuperation des données}
+Apres differentes discussion avec les equipes en charge de la conception de l’application nous avons decider de ne pas faire des appels SQL a chaque affichage du graph. L’entreprise etant en train de migrer les données sur cassandra toute intervention sur la base serait inutile.
+Cependant des batches sont deja en place pour recuperer des informations a intervalles regulier, nous avons donc opter dans un premier par recuperer les informations a chaque fois que les batches fait leur jobs. Ainsi nous avions deja un traitement de l’information. Il nous a fallu quand meme definir quels informations recuperer et trouver une moyen de les superproser au graph. Nous avons decider de tracer le graph dans un premier temps et mettre en mecanisme en place an angular qui permet d’ajouter les données business a la demande l’utilisateur
+
+\subsection{Affichage des données}
+Une fois le traitement et la recuperation des données realisé nous avons decider de mettre ses données en evidence sous forme d'un indicateur allant du rouge au vert pour le taux d’abandon du formulaire, avec une affichage plus detaillé lors du clique. 

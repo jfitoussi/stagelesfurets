@@ -1,0 +1,27 @@
+\chapter{Analyse du problème}
+
+Dans un premier temps ma démarche a ete de trouver une solution pour modéliser les champs du graph et de pouvoir les modéliser sous la même forme qu’il apparaisse sur le formulaire lui même. C’est a dire que l’idée etait d’observer le lien entre une champs texte “Avez vous déjà souscrit une assurance auto?” et une champs date “Quand avez vous obtenue votre permis de conduire”
+
+\section{Eclipse Sirius}
+Pour cela il m’a été suggérer d’utiliser un framework d’Eclipse : Sirius. Comme exposé plus haut Sirius est un outils spécialisé dans la modélisation de toute forme de problématique que peut se transposer en problème informatique.
+
+\section{Application WEB}
+Pour ma part j’ai aussi proposer une seconde solutiuon qui correspondait peut etre plsu a mon background. La solution etait d’utiliser  des library javasript pour visualiser les champs les layouter avec du HTML/CSS et de la propulser dans l’espace de maintenance de l’application en meme temps que le packaging de base
+
+\section{Donnée Business}
+Pour ma part j’ai aussi proposer une seconde solutiuon qui correspondait peut etre plsu a mon background. La solution etait d’utiliser  des library javasript pour visualiser les champs les layouter avec du HTML/CSS et de la propulser dans l’espace de maintenance de l’application en meme temps que le packaging de base
+
+\begin{itemize}
+\item Récupérer les données a l’instant ou la page est affiché 
+\item Mettre en cache à des périodes données les données nécessaire
+\item Réagir de manière réactive aux données mis a jour pour afficher une évolution des données en fonction des changement dans l’architecture des tunnels
+\end{itemize}
+
+\section{Autre utilisations}
+Construire a l’aide de metamodel est une pratique courant chez lesfurets.com ainsi il m’est possible de réfléchir à d’autres utilisation de l’outils sans reprendre beaucoup la structure et le code utilisé. 
+
+\subsection{Plan du site}
+Les pages du site suivent une logique propre ainsi qu’un modele prédéfini avec comme information la JSP utilisé, la version mobile et la version desktop ainsi que les CSS utilisées il m’est ainsi possible de mettre en place un graph de toutes les pages avec les données sus-mentionnée. De plus si les liens proposé dans le site qui sont aujourd’hui des strings était remplacer par des valeurs dans le code on pourrait en plus visualiser le mail complet du site sans parcourir tout le code de chaque page a la recherche d’attribut href.
+
+\subsection{CRM - Envoi de mail}
+Lesfurets.com disposent d’un outils leur permettant d’envoyer des mails de services a leur client. Tous les champs utlisé dans ces mails sont present dans le codes et on pourrai proposer dans l’outil un moyen de visualisé les mails et leur dependances vers les champs existant
