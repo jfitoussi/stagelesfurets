@@ -30,10 +30,39 @@ La logique par la suite était de servir les fichiers Json de façon asynchrone 
 Ainsi à chaque demande du graphe d'un tunnel à l'aide d'un des bouttons de l'interface on demande si le tableau Json existe. Si il existe on trace le graphe sinon on fait un appel au serveur, une fois le fichier récu on lance le calcule du graphe. Si il y a une attente, on affichera un élégant loader invitant l'utilisateur à prendre son mal en patience.
 
 \subsection{Zoomer, Déplacer les éléments, Se déplacer}
-Une fois le graphe afficher il est apparu essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer et déplacer les éléments du graphe. A l'aide de la documentation de l'API
+Une fois le graphe affichée il est apparu essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer dans le graphe et déplacer les éléments du graphe. A l'aide de la documentation de l'API, j'ai défini des fonctions de glisser déposer pour déplacer les éléments ainsi que pour déplacer tout le graphe. Enfin pour les fonctions de zoom nous avons passer tous le graphe en position relative.
+\clearpage
+\subsection{Layout du graphe}
+Cytoscape dispose d'un système pour permettre aux développeur de définir leur layout. Un layout n'étant qu'un ensemble de règles défini pour afficher les noeuds et arêtes sous forme de graphe.
+\begin{lstlisting}[caption=Exemple d'un layout traçant le graphe sous forme de cercle]
+var layoutCircle = {
+  name: 'circle',
+  fit: true, // whether to fit the viewport to the graph
+  padding: 30, // the padding on fit
+  boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
+  avoidOverlap: true, // prevents node overlap, may overflow boundingBox and radius if not enough space
+  radius: undefined, // the radius of the circle
+  startAngle: 3/2 * Math.PI, // the position of the first node
+  counterclockwise: false, // whether the layout should go counterclockwise (true) or clockwise (false)
+  sort: undefined, // a sorting function to order the nodes; e.g. function(a, b){ return a.data('weight') - b.data('weight') }
+  animate: false, // whether to transition the node positions
+  animationDuration: 500, // duration of animation in ms if enabled
+  ready: undefined, // callback on layoutready
+  stop: undefined // callback on layoutstop
+};
+\end{lstlisting}
+Enfin on laissera la possibilité à l'utilisateur de choisir le layout dont il aura besoin.
+\begin{figure}[!h]
+\centering
+\includegraphics[height=10cm]{outil/layout-circle.png}
+\caption{Graphe tracé avec un layout "circle"}
+\end{figure}
 
-\subsection{Changement du layout}
-De la meme maniere que pour l’affichage d’un tunnel different, pour le recalcul en fonction du layout, je me suis servi des mecanismes de AngularJS
+\subsection{Layout WireFrame}
+On proposera un layout "wireframe" qui permettra d'afficher le graphe sous une forme similaire au formulaire proposer dans les tunnels du site. C'est a dire que chaque écran est poser à la suite l'un de l'autre avec, à la suite, verticalement, les champs du formulaire.
+
+\subsection{Layout DAG}
+On proposera aussi un layout "dag" qui affichera le graphe avec en evidence les cycles et les dependances plus fortes.
 
 \subsection{Recherche d’un champs et autocompletion}
 Pour pouvoir rendre l’outil plus user-friendly, j’ai decider de proposer aux utilisateur de pouvoir rechercher une question parmis les question proposer et ainsi pouvoir zoomer sur celle-ci sans avoir a les rechercher visuellement
