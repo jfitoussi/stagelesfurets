@@ -6,6 +6,8 @@
 \usepackage{xcolor}
 \usepackage{times}
 \usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage{color}
 
 \usepackage[
 breaklinks=true,colorlinks=true,
@@ -37,7 +39,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 
 
 %%% STYLE OF PAGES NUMBERING
-\pagestyle{companion}\nouppercaseheads 
+%\pagestyle{companion}\nouppercaseheads 
 %\pagestyle{headings}
 %\pagestyle{Ruled}
 \pagestyle{plain}
@@ -50,6 +52,38 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 
 \maxsecnumdepth{subsection} % chapters, sections, and subsections are numbered
 \maxtocdepth{subsection} % chapters, sections, and subsections are in the Table of Contents
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{white},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
 
 
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%

@@ -1,21 +1,36 @@
 \chapter{Solution}
 
 \section{Eclipse : Sirius}
-Les premiers début du développement d’un modele pour Eclipse Sirius fut très fastidieux, après avoir passé un bout de temps sur le tutorial présent sur le site je me suis confronté a un manque d’autres exemples me permettant de vraiment prendre en main Sirius.
+Les premiers début du développement d’un modele pour Eclipse Sirius fut très fastidieux, après avoir passé un bout de temps sur le tutorial présent sur le site je me suis confronté a un manque d’autres exemples me permettant de vraiment prendre en main Sirius. Le manque d'information à été combler par l'équipe en charge du développement de Sirius. Cependant les démarches pour disposer d'une formation dans leur locaux à Nantes a pris trop de temps pour differentes raisons et nous avons du mettre de coté cette partie de la solution.
 
-\section{Page de maintenance Web : Javascript}
-Ma premier demarche a été de trouver une bibliotheque capable de dessiner un gros graph orienté cyclique.
-Mon premier choix s’est porté sur d3.js qui est surement la bibliotheque la plus populaire pour tracer des graphes. Seulement celle-ci est performante pour creer des graph batton, camembert, blabla
-J’ai ensuite fait le choix de m’orienter vers google pour definir la library a utiliser, qui m’a rediriger vers une question similaire sur stackoverflow. J’ai eu le droit a un comparatif complet des existent sur le net, avec leur avantages et inconvenient. Mon choix s’est porter sur cytoscape.js. Cytoscape avait l’avantage de realiser rapidement un graph similaire a mes besoin avec une integration avec jQuery et/ou Angular pour la manipulation du DOM. Il est de plus sous licence GPL ce qui en faisait un projet open source interessant pour moi. De plus Cytoscape propose par default une dizaine de layout utilisable pour explorer de differentes maniere le graph
+\section{Application Web}
+Ma premier démarche a été de trouver une bibliothèque Javascript capable de generer un graphe orienté cyclique. Google m’a diriger vers une question similaire sur stackoverflow. J’ai bénéficier d'un comparatif complet des existent sur le net, avec leur avantages et inconvénient. Mon choix s’est porter sur cytoscape.js. Cytoscape avait l’avantage de réaliser rapidement un graphe correspondant à mes besoin depuis un fichier JSON. Il offre de plus une integration avec jQuery et/ou Angular pour la manipulation du DOM. Il est sous licence GPL ce qui faisait partie des impératifs du projet. Enfin Cytoscape propose par defaut une dizaine de layout utilisable pour explorer de différentes manière le graphe.
+\clearpage
+\section{Développement de l'outil}
 
-\section{Cytoscape.js + Features}
-Comme explicité precedement Cytoscape permet d’utiliser jQuery et/ou AngularJS dans la manipulation du dom. C’est ainsi qu’une fois que j’ai reussi a generer le graph de dependance des champs du formulaire sous forme de tableau JSON interpretable par Cytoscape j’ai pu mettre en place des mecanismes asynchrone pour regenerer le graph.
+\subsection{Tableau Json}
+La première chose pour pouvoir exploiter un affichage du graphe des champs du formulaire avec Cytoscape est de générer un fichier Json. Le fichier contenant une liste d'objet représentant soit un noeud soit une arête. 
+\begin{lstlisting}
+elements: [
+      { data: { id: 'foo' }, group: "nodes" },
+      { data: { id: 'bar' }, group: "nodes" },
+      { data: { id: 'baz', source: 'foo', target: 'bar' }, group: "edges" }
+    ]
+\end{lstlisting}
+En se servant de la bibliothèque de Google Gson qui permet de transformer un objet Java en objet Javascript, il a été necessaire de créer des classes correspondant aux critères de Cytoscape. Il a fallu par la suite générer un fichier pour chaque tunnel au format Json contenant chaque champs avec les données qui lui sont propres et les dépendances sous formes d'arètes.
+
+\subsection{Génération du graphe}
+La logique par la suite était de servir les fichiers Json de façon asynchrone à la demande d'affichage du graphe d'un des tunnels de LesFurets.com. Pour cela la solution vers laquelle je me suis tourner était la manipulation du DOM à l'aide de AngularJS. Cytoscape permet à l'aide de closure de modifier le graph qu'en cas de modifications défini dans le "controller" AngularJS. 
+\vspace{0.2in}
+\begin{figure}[!ht]
+\center
+\includegraphics[width=15cm]{outil/buttons-tunnels.png}
+\caption{Choix du tunnel}
+\end{figure}
+Ainsi à chaque demande du graphe d'un tunnel à l'aide d'un des bouttons de l'interface on demande si le tableau Json existe. Si il existe on trace le graphe sinon on fait un appel au serveur, une fois le fichier récu on lance le calcule du graphe. Si il y a une attente, on affichera un élégant loader invitant l'utilisateur à prendre son mal en patience.
 
 \subsection{Zoomer, Déplacer les éléments, Se déplacer}
-Une fois le graph afficher il m’a paru essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer et déplacer les éléments du graph
-
-\subsection{Choix du tunnel}
-La premiere fonctionnalité que j’ai voulu implementer etait de pouvoir cliquer sur un boutton pour afficher le formulaire rechercher et de recalculer le graph sans changer de page. Je me suis servi des mecanismes proposer par la bibliotheque et Angular pour faire un appel serveur asynchrone pour recharger le graph.
+Une fois le graphe afficher il est apparu essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer et déplacer les éléments du graphe. A l'aide de la documentation de l'API
 
 \subsection{Changement du layout}
 De la meme maniere que pour l’affichage d’un tunnel different, pour le recalcul en fonction du layout, je me suis servi des mecanismes de AngularJS
