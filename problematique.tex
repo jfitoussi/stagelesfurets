@@ -1,10 +1,35 @@
 \chapter{Problématique}
 
 \section{Contexte}
-L'application du site lesfurets.com est construite sur une architecture JAVA SE packager a l’aide de l'outils de gestion et d'automatisation de production des projets logiciels Maven. Maven s’occupe de gerer les dépendances de code générer certaines classes ainsi que de compiler le projet. Chaque formulaire est représenté au seins du site par un tunnel, toute la logique est est gerer par GWT (Google Web Toolkit) qui s’occupe de générer du code javascript depuis du code java. L'intérêt du framework est de permettre aux développeur java de l’entreprise d’aborder leur code coté client et coté serveur avec la même approche. De plus GWT met l'accent sur des solutions efficaces et réutilisables aux problèmes rencontrés habituellement par le développement AJAX : difficulté du déboggage JavaScript, gestion des appels asynchrones, problèmes de compatibilité entre navigateurs, gestion de l'historique et des favoris, etc.
+L'application du site LesFurets.com est construite sur une architecture JAVA SE packager a l’aide de l'outils de gestion et d'automatisation de production des projets logiciels Maven. Maven s’occupe de gerer les dépendances de code générer certaines classes ainsi que de compiler le projet. Chaque formulaire est représenté au seins du site par un tunnel, toute la logique est est gerer par GWT (Google Web Toolkit) qui s’occupe de générer du code javascript depuis du code java. L'intérêt du framework est de permettre aux développeur java de l’entreprise d’aborder leur code coté client et coté serveur avec la même approche. De plus GWT met l'accent sur des solutions efficaces et réutilisables aux problèmes rencontrés habituellement par le développement AJAX : difficulté du déboggage JavaScript, gestion des appels asynchrones, problèmes de compatibilité entre navigateurs, gestion de l'historique et des favoris, etc.
 Au seins de l’application il existe déjà un projet pour générer des fichiers mdxml et csv représentant les champs du formulaire c’est dans cette partie du code que l’on développera l’outils de modélisation.
 Pour la modélisation en elle même Il s'agira essentiellement d'identifier les entités logiques et les dépendances logiques entre ces entités. La modélisation des données est une représentation abstraite, dans le sens où les valeurs des données individuelles observées sont ignorées au profit de la structure, des relations, des noms et des formats des données pertinentes.
-Pour simplifié la problématique, l’équipe de lesfurets.com a décider d’abstraire les champs du formulaire ainsi que les dépendances à l’aide d'un méta model. Un méta modèle décrit la structure des modèles et permet de raisonner sur les modèles comme sur les connaissances de premier niveau.
+Pour simplifié la problématique, l’équipe de LesFurets.com a décider d’abstraire les champs du formulaire ainsi que les dépendances à l’aide d'un méta model. Un méta modèle décrit la structure des modèles et permet de raisonner sur les modèles comme sur les connaissances de premier niveau.
 
-\section{Besoins}
-Du coté des équipes les besoins était double dans un premier lieu donnée une visibilité plus forte a la mécanique déployer pour les utilisateurs au seins des tunnels. Mettre en relations les données récolté sur les parcours utilisateurs et le parcours utilisateurs lui même. Et d’autre part la visualisation des modifications possible du graph lui même
+\section{Génération de code générer}
+Une fois l'Enum Java crée pour un champ du formulaire, les labels et d'autres caractéristiques du champ sont crée à l'aide de différentes Classes qui sont code-générer à différents moment lors de la compilation Maven. La première problématique qui se présente est de bien comprendre à quel moment sont généré les toutes les classes liées à ces champs. Toutes ces informations seront nécessaires par la suite.
+
+\section{API Reflection}
+Pour recuperer les bonnes informations dans le JAR il me faut utiliser une Api d'intropection. Pour cela il me faut comprendre comment fonctionne la compilation de Java, comment fonctionne un classloader et à quel moment je peux interroger mon api de réflection. Ensuite il faudra traiter les données récoltées pour les repartir dans des fichiers plats.
+
+\section{Fichier de données}
+Il a aussi fallu stocker dans des fichiers les données des champs du formulaires pour pouvoir y accéder rapidement. Ces données n'étant qu'en lecture seul, il n'y avais pas nécessité de les stocker dans une base de donnée. Le format XML est le format le plus utilisé dans l'application et il est facile de transformer une format mdxml en format xml simple. La difficulté se trouvera dans la fabrications de fichier JSON.
+
+\section{Interface}
+La partie interface dépendra de l'outil utilisé.
+
+\subsection{Eclipse Sirius}
+Dans le cadre de Eclipse Sirius, il faudra proposer une interface clair et un déploiement automatique sans qu'il n'y ai besoin de reprendre le système en main à chaque étape. Le placement des objet ainsi que leur design pourront se trouver dans la base de code et être interprèté comme le reste du projet pour détecter les erreurs. 
+
+\subsection{Application Web}
+Dans le cadre de l'application Web il s'agira de CSS et de JavaScript classique. Cependant il faudra placer l'application dans les pages de maintenances du site. Les pages de maintenance sont regrouper dans un package Java et il faudra rendre accessible les informations à ces pages ce qui n'est pour le moment pas le cas.
+
+\subsection{Donnée Business}
+Les données business sont disponible dans une base Olap dans laquelle on pourra lire sans risqué de perturbé le site. Plusieurs choix s'offre pour le traitement de ces données :
+
+\begin{itemize}
+\item Récupérer les données a l’instant ou la page est affiché 
+\item Mettre en cache à des périodes données les données nécessaire
+\item Réagir de manière réactive aux données mis a jour pour afficher une évolution des données en fonction des changement dans l’architecture des tunnels
+\end{itemize}
+
