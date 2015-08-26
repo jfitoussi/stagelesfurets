@@ -30,7 +30,7 @@ La logique par la suite était de servir les fichiers Json de façon asynchrone 
 Ainsi à chaque demande du graphe d'un tunnel à l'aide d'un des bouttons de l'interface on demande si le tableau Json existe. Si il existe on trace le graphe sinon on fait un appel au serveur, une fois le fichier récu on lance le calcule du graphe. Si il y a une attente, on affichera un élégant loader invitant l'utilisateur à prendre son mal en patience.
 
 \subsection{Zoomer, Déplacer les éléments, Se déplacer}
-Une fois le graphe affichée il est apparu essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer dans le graphe et déplacer les éléments du graphe. A l'aide de la documentation de l'API, j'ai défini des fonctions de glisser déposer pour déplacer les éléments ainsi que pour déplacer tout le graphe. Enfin pour les fonctions de zoom nous avons passer tous le graphe en position relative.
+Une fois le graphe affichée il est apparu essentiel de pouvoir laisser l’utilisateur zoomer, se déplacer dans le graphe et déplacer les éléments du graphe. A l'aide de la documentation de l'API et aux fonctionnalités permises par la balise canvas de HTML5, j'ai pu définir des fonctions de glisser déposer pour déplacer les éléments ainsi que pour déplacer tout le graphe. Enfin pour les fonctions de zoom j'ai défini le graphe en position relative.
 \clearpage
 \subsection{Layout du graphe}
 Cytoscape dispose d'un système pour permettre aux développeur de définir leur layout. Un layout n'étant qu'un ensemble de règles défini pour afficher les noeuds et arêtes sous forme de graphe.
@@ -59,51 +59,82 @@ Enfin on laissera la possibilité à l'utilisateur de choisir le layout dont il 
 \end{figure}
 
 \subsection{Layout WireFrame}
-On proposera un layout "wireframe" qui permettra d'afficher le graphe sous une forme similaire au formulaire proposer dans les tunnels du site. C'est a dire que chaque écran est poser à la suite l'un de l'autre avec, à la suite, verticalement, les champs du formulaire.
+On proposera un layout "wireframe" qui permettra d'afficher le graphe sous une forme similaire au formulaire proposé dans les tunnels du site. C'est a dire que tous les écrans sont disposer à la suite les uns des autres et que sont disposé à l'intérieur, verticalement, les champs du formulaire. 
+Pour cela il m'a fallut réaliser deux opérations non triviales : 
+\begin{itemize}
+\item 
+Modifier la structure du Json pour inclure une donnée permettant de définir l'ordre des des écrans, blocs, groupes, champs du formulaire.
+\item
+Écrire une fonction dans mon Javascript permettant de positionner horizontalement et verticalement les éléments.
+\end{itemize}
+\vspace{0.5in}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{outil/layout-wireframe.png}
+\caption{Tunnel Résiliation avec le Layout Wireframe}
+\end{figure}
 
+\clearpage
 \subsection{Layout DAG}
-On proposera aussi un layout "dag" qui affichera le graphe avec en evidence les cycles et les dependances plus fortes.
+On proposera aussi un layout "dag" qui affichera le graphe avec en évidence les cycles et les dépendances plus fortes. Pour cela on calculera les dépendances entres les champs. On calculera le score de chaque élément en fonction de son nombre d'arête total liée a un élément parent diffèrent, que ce soit un écran, un bloc ou un group. Enfin on disposera au plus proche les éléments contenu en fonction des deux éléments contenu ayant les plus grands score. Ce layout sera intéressant pour des tunnels avec un grand nombre d'élément pour visualiser les dépendances entres les éléments du formulaire.
+\vspace{0.5in}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{outil/layout-dagre.png}
+\caption{Tunnel Assurance Auto avec le Layout DAG}
+\end{figure}
 
 \subsection{Recherche d’un champs et autocompletion}
-Pour pouvoir rendre l’outil plus user-friendly, j’ai decider de proposer aux utilisateur de pouvoir rechercher une question parmis les question proposer et ainsi pouvoir zoomer sur celle-ci sans avoir a les rechercher visuellement
+Une fois la graph affichant tous les champs du formulaire il nous a paru nécessaire de pouvoir rechercher un champs et de pouvoir zoomer sur celui-ci. Ma première approche était d'écrire une fonction capable de zoomer sur un élément du graphe depuis le code. Une fois celle-ci implémenter, il à été facile de zoomer sur le champs et par la suite de zoomer sur son élément parent direct.
+\vspace{0.5in}
+\begin{figure}[!h]
+\centering
+\includegraphics[height=5cm]{outil/feature-search.png}
+\includegraphics[height=5cm]{outil/feature-search-2.png}
+\end{figure}
 
 \subsection{Champs du formulaire}
-Dans un premier temps l’idée etait de pouvoir differencier les champs du formulaire et les faire ressembler aux champs du site
+Un autre gros morceaux du problème était de pouvoir afficher chaque champs d'après un style semblable a celui présent dans les champs du formulaire. Après avoir récupère une liste de tous les types d'éléments dans le formulaire : bouton, textbox, checkbox, boutons radio, liste, date, ... Cette liste était disponible depuis une Enum Java. Ensuite il a fallu dessiner dans la balise canvas des éléments ayant la forme des champs du formulaire.
 
-\subsection{Disposition du graph}
-Par la suite il a fallu reprendre le graph pour le faire ressembler a un formulaire du site
+\vspace{0.5in}
+\begin{figure}[!h]
+\centering
+\includegraphics[height=9cm]{outil/layout-fields-2.png}
+\caption{Différents type de champs du formulaire}
+\end{figure}
 
-\subsection{Modification des elements et des dependances}
-Une fois le graph ressemblant au formulaire present sur le site il a fallu mettre en place une fonction de modifications des elements du graph. Et une fonction de modifications des dependances entre les champs.
 
-\subsection{Modification du label du champs}
-La premiere fonction était sans doute celle qui avait le moins d’incidence sur le formulaire. On peut juste changer le label afficher sur le formulaire
+\subsection{Modification des éléments et des dépendances}
+Une fois la phase de "Layout" réalisé il a fallu mettre en place des fonctions de modifications/suppression des éléments du graphe. Et une fonction de modifications des dépendances entre les champs.
 
-\subsection{Modification type du champs}
-On peut à l’aide d’une autocompletion avoir accés a tous les types de champs present sur le tunnel et modifier le type du champs sur lequel on est
+\subsubsection{Modification du label du champs}
+La première fonction était sans doute celle qui avait le moins d’incidence sur le formulaire. Il s'agit de proposer aux utilisateur de pouvoir changer le nom du champs du formulaire.
 
-\subsection{Suppression d’une dependance}
-Il s’agit juste de mettre en evidence les champs touché par la suppression d’une dependances. Les dependances ne sont pas interdependantes.
+\subsubsection{Modification type du champs}
+On proposera aussi à l'utilisateur de pouvoir changer le type d'un champ sélectionné. Pour cela il a fallu lister tous les types de champs disponible. J'ai pu servir directement dans la JSP la liste des types de champs possible à l'aide d'une Enum présente dans le code Java.
 
-\subsection{Sauvegarde etat du graph}
-Une fois les fonctions de modifications mise en place il a paru evident qu’il a fallait pouvoir sauvegarder l’etat du graph modifié pour pouvoir l’envoyer par la suite.
+\subsubsection{Suppression d’une dépendance}
+Il s’agit juste de mettre en évidence les champs touché par la suppression d’une dépendances. Les dépendances ne sont pas interdépendantes. On soulignera les champs impacté par la suppression d'une couleur rouge.
+
+\subsection{Sauvegarde du graphe}
+Une fois les fonctions de modifications mise en place il a paru évident qu’il a fallait pouvoir sauvegarder l’etat du graph modifié pour pouvoir l’envoyer par la suite.
 La premiere approche simple était de pouvoir faire une capture d’ecran de l’etat du graph dans une resolution assez grande pouvoir voit toute les details du formulaire.
-La seconde approche fut de sauvegarder un fichier JSON avec toutes les données modifié ainsi que les position des champs
+La seconde approche fut de sauvegarder un fichier Json avec toutes les données modifié ainsi que les position des champs. En effet Cytoscape accepte de bloquer une position à la création du graphe sous la forme de coordonnée cartésiennes. Il a ensuite fallu définir un repère qui correspondait au repère de base de Cytoscape. Enfin on enregistre la collection d'éléments sous la forme d'un fichier Json.
 
-\subsection{Charger un graph}
-Une fois les graph sauvegardable il a fallu pouvoir les reafficher a l’aide d’un module d’import. Une balise input file et un recalcul du graph nous a permis d’implementer cette fonction rapidement
+\subsection{Charger un graphe}
+Une fois qu'on a donner la possibilité aux utilisateurs de sauvegarder le graphe, il a fallu implémenter un module d’import. Une balise input file et un recalcule du graphe, et le tour est joué.
 
-\subsection{Affichage des differences}
-Une fois le graph importer nous avons voulu aussi proposer une visualisation des differences avec la version presente et une version importer.
+\subsection{Calcul des différences}
+Une fois le graphe importer nous avons voulu aussi proposer une visualisation des différences entre la version courante et une version importé. Une fois le fichier importer on se retrouver en présence de deux objets Javascript que l'on peut aisément comparer. Dans le calcul des différences on proposera deux scénario. Le premier est d'afficher graphiquement les différences sur le graphe, à l'aide de couleurs différentes. Le second scénario correspond à servir une liste des différences sous la forme d'une réponse Json.
 
-\subsection{Not User-friendly}
-Les furets mette leur site en production de maniere quotidienne, il nous a paru pertinent comme fonctionnalité de pouvoir affichage la presence de difference entre le graph en de la version du site en production et la version a mettre en production sans passer par l’interface graphique. Ainsi on proposera une liste au format texte des differences entre ces deux versions.
+\subsection{Versionnement du graphe}
+En se servant du module de calcul de différences en mode non graphique, l'outil peut versionner un fichier des différences que l'on commitera avec nouvelle version du master. Une future amélioration serait de pouvoir lever une alerte si un trop grand nombre d'objet sont diffèrent.
 
 \section{Données Business}
 
-\subsection{Récuperation des données}
-Apres differentes discussion avec les equipes en charge de la conception de l’application nous avons decider de ne pas faire des appels SQL a chaque affichage du graph. L’entreprise etant en train de migrer les données sur cassandra toute intervention sur la base serait inutile.
-Cependant des batches sont deja en place pour recuperer des informations a intervalles regulier, nous avons donc opter dans un premier par recuperer les informations a chaque fois que les batches fait leur jobs. Ainsi nous avions deja un traitement de l’information. Il nous a fallu quand meme definir quels informations recuperer et trouver une moyen de les superproser au graph. Nous avons decider de tracer le graph dans un premier temps et mettre en mecanisme en place an angular qui permet d’ajouter les données business a la demande l’utilisateur
+\subsection{Récupération des données}
+Après différentes discussion avec les équipes en charge de la conception de l’application nous avons décider de ne pas faire des appels à la base SQL a chaque affichage du graphe.
+Cependant il m'a été conseiller d'utiliser les données retourner par des batches (Jobs) en charge de récupérer des informations à intervalles régulier. Les informations fourni par ces batches servent à créer des dashboard régulier pour les équipes d'analyse. Ainsi Il nous a fallu quand même définir des règles de trie pour créer un agrégat de données pertinent. Nous avons défini le bloc comme grain d'analyse des données, car c'est le plus petit élément où pour passer d'un bloc à l'autre il faut effectuer une action.
 
 \subsection{Affichage des données}
-Une fois le traitement et la recuperation des données realisé nous avons decider de mettre ses données en evidence sous forme d'un indicateur allant du rouge au vert pour le taux d’abandon du formulaire, avec une affichage plus detaillé lors du clique. 
+Une fois les données disponibles, il m'a été demandé de les afficher sous la forme d'une jauge en pourcentage en fonction du nombre d'utilisateur passant l'écran suivant à coté du label de chaque bloc. Si la jauge est en dessous des 50\% on affichera aussi la date de la dernier champ ou dépendance modifié dans le bloc.

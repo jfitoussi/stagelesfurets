@@ -51,7 +51,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 
 
 \maxsecnumdepth{subsection} % chapters, sections, and subsections are numbered
-\maxtocdepth{subsection} % chapters, sections, and subsections are in the Table of Contents
+\maxtocdepth{subsubsection} % chapters, sections, and subsections are in the Table of Contents
 
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
@@ -93,15 +93,12 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 \input{front.tex}
 \cleardoublepage
 \tableofcontents*
-\frontmatter
 \input{introduction.tex}
-\mainmatter
 \input{lesfurets.tex}
 \input{sujet.tex}
 \input{problematique.tex}
 \input{gestion.tex}
 \input{solution.tex}
-\backmatter
 \input{conclusion.tex}
 
 \end{document}
