@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper,oldfontcommands]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\topmargin 0.0cm
+\oddsidemargin 0.2cm
+\textwidth 16cm 
+\textheight 21cm
+\footskip 1.0cm
+
+\title{Modélisation des champs des formulaires\\Fiche de synthèse}
+\author
+{Jonathan FITOUSSI\\
+\\
+\normalsize{Entreprise LesFurets.com}\\
+\normalsize{Université Pierre et Marie Curie}\\
+}
+\date{}
+
+\begin{document} 
+\maketitle 
+
+Ce document est un complément du rapport complet transmis à l'équipe pédagogique. Il contient une synthèse concernant le sujet lors de la seconde période d'apprentissage au sein de l'entreprise Courtanet éditrice du site LesFurets.com
+
+
+% In setting up this template for *Science* papers, we've used both
+% the \section* command and the \paragraph* command for topical
+% divisions.  Which you use will of course depend on the type of paper
+% you're writing.  Review Articles tend to have displayed headings, for
+% which \section* is more appropriate; Research Articles, when they have
+% formal topical divisions at all, tend to signal them with bold text
+% that runs into the paragraph, for which \paragraph* is the right
+% choice.  Either way, use the asterisk (*) modifier, as shown, to
+% suppress numbering.
+
+\section{L'Entreprise}
+Le site internet LesFurets.com est un comparateur d'assurance (Auto, Moto,Habitation, Crédit et Mutuelle Santé), de crédit à la consommation et de forfaits mobile. Avec LesFurets.com, les internautes peuvent comparer facilement les offres d’un panel d’assureurs pour trouver le produit qui leurs convient. Le site est développé en interne au sein des bureaux de l'entreprise dans le 17ème arrondissement de Paris. 
+L'entreprise dispose d'un département IT de plus de 30 employés, ils s'occupe tous les jours de faire évoluer le site internet en améliorant les fonctionnalités existantes ainsi qu'en ajoutant de nouvelles fonctionnalités. L'équipe adopte une méthodologie de gestion de projet Agile Kanban. Les fonctionnalités sont développées en parallèle et mise en production quotidiennement. Toutes les tâches disposent d'un cycle de vie qui doit passer par les phases d'analyse, de développement, de test ainsi qu'une phase de mise en production.
+Pour réaliser ces opérations l'entreprise adopte plusieurs techniques d'amélioration d'usine logiciel comme l'intégration continue, le développement piloté par les tests ou le déploiement continu. Le département est découpé en équipes composées aussi bien de développeurs que d'analystes fonctionnels.
+L'entreprise possède une forte culture Java et expose souvent ses chantiers techniques à la communauté aussi bien sur internet (sur son repository github) que dans des conférences comme Devoxx, BreizhCamp ou encore Mix-IT. Cette culture fait aussi partie des activités pratiqués dans l'entreprise. Les employés sont régulièrement invités à participer à des courtes présentations liées au monde du développement dans les locaux de l'entreprise. De plus des points techniques sont organisés pour partager avec les autres des nouvelles avancés effectués dans les équipes. 
+
+\section{Sujet du stage}
+Le problème étudié pendant le stage touche une des partie les plus sensible du site aussi bien en terme technique que dans son intérêt business. Il s'agit des formulaires permettant à un utilisateur de préciser son profil et lui proposer la meilleur offre d'assurance. C'est le principal service que rend le site LesFurets.com.
+
+D’un point de vue technique l’équipe de LesFurets.com a décidé d’abstraire les champs du formulaire ainsi que leurs dépendances à l’aide d'un metamodel. C'est à dire que les champs ainsi que leurs dépendances épousent un format défini à un niveau d'abstraction diffèrent du code. Ils ne sont pas implémentés au moment de l'instanciation des champs mais au niveau du modèle de données sous forme d'Enum Java. L'implantation de la construction permet de caractériser chaque champ et de le présenter à l'utilisateur sous la forme voulu (combo box, radio bouton, date picker, ...). De plus chaque champ connaîtra par la suite les comportement nécessaires lors de l'évolution de ses co-dépendants.  A l’heure actuelle, l’application Web est capable de transformer ce modèle de champs au format XMI pour pouvoir l'exporter dans un logiciel de modélisation comme MagicDraw, Rational. Le sujet du stage consistera par un passage à d’autres formats de modélisation (EMF, JSON) traités à l'aide d'outils open-source qui permettront aux équipes de mieux visualiser le graphe des champs des formulaires ainsi que leurs dépendances. Il est prévu ensuite de superposer des trackers analytics sur ces graphes. Il est aussi envisagé de garder une trace des différences entre les versions successives de l’application pour visualiser les modifications et/ou les régressions en fonctions des développements. Enfin au même titre qu’un IDE classique, l’outil devrait pouvoir proposer des fonctions d’édition, de sauvegarde et de partage des données traitées. 
+
+Les utilisateurs de l’outil seront d’une part les architectes logiciel de la société, les développeurs mais aussi les Business Analysts (concepteurs fonctionnels) qui pourront mieux cerner les impacts des modifications au seins du formulaire. Ils pourront aussi mieux cibler les besoin des utilisateurs du site. Ainsi il faudra imaginer une interface qui pourrait s'apparenter à des wireframes qui ne sera plus l’apanage des seuls ingénieurs. On pourrait aussi proposer des interfaces différentes en fonctions des utilisateurs de l'outil et de l'utilisation qu'ils en feront.
+
+\section{Réalisation de l'Outil}
+L'outil final est une application web incluse dans les pages de maintenance du site LesFurets.com. Son rôle est de récupérer l'état des formulaires de l'application. Tous les éléments du formulaire peuvent être un écran, un bloc, un groupe ou un champ du formulaire. Tous ces éléments suivent une hiérarchie stricte allant de l'écran au champ.
+Ainsi l'application se chargera de structurer des fichier plat au format JSON regroupant tous les éléments d'un formulaire avec les informations nécessaire et surtout l'élément parent.
+Par la suite l'application s'occupe de traiter ces fichiers à l'aide d'appels asynchrones en AJAX. L'application calcul en place le graphe du formulaire avec les liens entre les champs et l'affiche. L'application permet aussi de choisir parmi plusieurs styles prédéfinis pour que l'utilisateur puisse visualiser selon ses besoins. L'utilisateur peut aussi manuellement modifier, déplacer les éléments du formulaire demandé ainsi que les dépendances entre les champs. 
+L'application proposera enfin d'enregistrer le graphe modifié pour permettre de pouvoir le recharger par la suite. L'application peut aussi afficher les différences entre différents graphes pour les afficher à l'utilisateur ou les servir à une autre partie de l'application. L'outil est découpé entre le traitement en Java des informations coté serveur et envoyées sous format JSON. Et les pages HTML/JavaScript servies au navigateur pour l'affichage du graphe traité coté client. La bibliothèque utilisée pour tracer le graphe en JavaScript est Cytoscape couplé à AngularJS. L'application se présente comme une page unique ou l'ont réalise l'ensemble des interactions. L'outil affiche de plus sur le graphe des données liées à l'utilisation du site. Elles sont affichées sous la forme d'une jauge au sein de chaque élément "bloc".
+La réalisation de l'outil s'est inscrite dans la méthodologie générale de l'entreprise. Toutes les fonctionnalités de l'application ont été développées selon les principes de la méthode Agile Kanban. Après une phase de conception et d'analyse de la problématique, le développement à été découpé en petites tâches inscrites sur des tickets disposant d'un cycle de vie. Une fois la fonctionnalité réalisée avec les tests qui convenaient, le nouveau code écrit passe par les phases de relecture de code et tests pour partir dans l'intégration continue de l'application. Puis la fonctionnalité se retrouve candidate pour la prochaine procédure de mise en production.
+\section{Bilan}
+L'application est disponible pour l'IT de l'entreprise et fait partie intégrante du site LesFurets.com. Elle sert principalement aujourd'hui à visualiser l'ensemble des champs d'un formulaire mais demande un peu d'adaptation pour pouvoir vraiment être exploitable sur les formulaires possédant un trop grand nombre de champs (les formulaires auto et moto possédant plus de 150 champs). Beaucoup de parties de code de l'outil peuvent être mutualisés et un chantier technique à déjà été envisagé pour l'appliquer aux pages du site. Le but serait de tracer un graphe de l'ensemble des liens entre les pages du sites avant le déploiement l'application. D'autres applications de l'outil sont envisageables à moyen terme ainsi qu'une documentation complète.
+\end{document}
