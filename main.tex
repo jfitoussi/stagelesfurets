@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,oldfontcommands]{memoir}
+\documentclass[12pt,a4paper,oldfontcommands]{memoir}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -8,6 +8,7 @@
 \usepackage[francais]{babel}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{multicol}
 
 \usepackage[
 breaklinks=true,colorlinks=true,
@@ -30,8 +31,8 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 %%% CHAPTER'S STYLE
 %\chapterstyle{bianchi}
 %\chapterstyle{ger}
-\chapterstyle{madsen}
-%\chapterstyle{ell}
+%\chapterstyle{madsen}
+\chapterstyle{ell}
 %%% STYLE OF SECTIONS, SUBSECTIONS, AND SUBSUBSECTIONS
 \setsecheadstyle{\Large\bfseries\sffamily\raggedright}
 \setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
@@ -54,36 +55,53 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 \maxtocdepth{subsubsection} % chapters, sections, and subsections are in the Table of Contents
 
 \lstdefinelanguage{JavaScript}{
-  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, this},
-  ndkeywordstyle=\color{darkgray}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
 }
 
 \lstset{
-   language=JavaScript,
-   backgroundcolor=\color{white},
-   extendedchars=true,
-   basicstyle=\footnotesize\ttfamily,
-   showstringspaces=false,
-   showspaces=false,
-   numbers=left,
-   numberstyle=\footnotesize,
-   numbersep=9pt,
-   tabsize=2,
-   breaklines=true,
-   showtabs=false,
-   captionpos=b
+    language=JavaScript,
+    backgroundcolor=\color{white},
+    extendedchars=true,
+    basicstyle=\footnotesize\ttfamily,
+    showstringspaces=false,
+    showspaces=false,
+    numbers=left,
+    numberstyle=\footnotesize,
+    numbersep=9pt,
+    tabsize=2,
+    breaklines=true,
+    showtabs=false,
+    captionpos=b
 }
 
+\lstset{
+    language=Java,
+    basicstyle=\normalsize, % ou ça==> basicstyle=\scriptsize,
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fullflexible,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
 
 
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
@@ -93,12 +111,15 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 \input{front.tex}
 \cleardoublepage
 \tableofcontents*
+\frontmatter
 \input{introduction.tex}
+\mainmatter
 \input{lesfurets.tex}
 \input{sujet.tex}
 \input{problematique.tex}
 \input{gestion.tex}
 \input{solution.tex}
+\backmatter
 \input{conclusion.tex}
 
 \end{document}
