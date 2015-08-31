@@ -1,0 +1,21 @@
+{
+  "name": "presentation-alternance",
+  "version": "1.0.0",
+  "authors": [
+    "jfitoussi <jonathan.fitoussi@me.com>"
+  ],
+  "description": "Présentation pour le sujet de stage au sein de l'entreprise lesFurets.com",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "~3.1.0"
+  }
+}
