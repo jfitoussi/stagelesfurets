@@ -253,7 +253,7 @@
         // parallaxBackgroundSize: '2100px 900px',
         multiplex: {
             // Example values. To generate your own, see the socket.io server instructions.
-            secret: '14411226692646732345', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+            secret: 'null', // Obtained from the socket.io server. Gives this (the master) control of the presentation
             id: '8aaf887768235c3d', // Obtained from socket.io server
             url: 'revealjs.jit.su:80' // Location of socket.io server
         },
@@ -290,7 +290,6 @@
             }
             },
             { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
-            { src: '../bower_components/reveal.js/plugin/multiplex/master.js', async: true },
 
             // and if you want speaker notes
             { src: '../bower_components/reveal.js/plugin/notes-server/client.js', async: true }
