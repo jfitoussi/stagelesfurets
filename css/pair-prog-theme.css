@@ -69,6 +69,11 @@
   background-color: #212121;
 }
 
+.reveal .twocolumn.white:before {
+  background-color: #eeeeee;
+}
+
+
 .reveal .step {
   color: black;
   font-size: 1.5em;

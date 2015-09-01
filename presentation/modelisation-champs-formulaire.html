@@ -44,25 +44,25 @@
         <section class="flushleft" data-background="../img/nwx/lesfurets-background-black-01.jpg">
             <h2>Jonathan Fitoussi</h2>
 
-            <h3 class="fragment">Étudiant en Master 2 STL/INSTA</h3>
-            <h4 class="fragment">En alternance chez Courtanet, éditeur de logiciel du site LesFurets.com</h4>
+            <h3>Étudiant en Master 2 STL/INSTA</h3>
+            <h4>En alternance chez Courtanet, éditeur de logiciel du site LesFurets.com</h4>
         </section>
-        <section class="flushleft" data-background="../img/nwx/lesfurets-background-black-01.jpg">
-            <h1 class="indigo500">LesFurets.com</h1>
+        <section class="flushleft" data-background="img/furets-rewards-bg.jpg">
+            <h1 class="font-shadow">LesFurets.com</h1>
 
-            <p class="fragment flushright">1er site indépendant de comparaison d’assurance, lancé en septembre 2012</p>
-            <p class="fragment flushright">Un lieu unique pour comparer rapidement des centaines d’offres
+            <p class="fragment flushright font-shadow">1er site indépendant de comparaison d’assurance, lancé en septembre 2012</p>
+            <p class="fragment flushright font-shadow">Un lieu unique pour comparer rapidement des centaines d’offres
                 (assurances auto, moto, MRH, santé et emprunteur)</p>
-            <p class="fragment flushright">Application WEB Java</p>
+            <p class="fragment flushright font-shadow">Application WEB Java</p>
         </section>
         <section class="flushleft">
             <h1>Sujet</h1>
-            <ul>
-                <li class="fragment flushright">Mettre en place un outil permettant de visualiser un graphe
+            <ul class="">
+                <li class="fragment">Mettre en place un outil permettant de visualiser un graphe
                 correpondant aux formulaires présent sur le site</li>
-                <li class="fragment flushright">Adapter le format d'export éxistant</li>
-                <li class="fragment flushright">Proposer des fonctions d'édition et de sauvegarde du graphe</li>
-                <li class="fragment flushright">Superposer des données business au graphe</li>
+                <li class="fragment">Adapter le format d'export éxistant</li>
+                <li class="fragment">Proposer des fonctions de gestion du graphe</li>
+                <li class="fragment">Superposer des données business au graphe</li>
             </ul>
         </section>
         <section class="twocolumn black fragment present" data-transition="fade-out">
@@ -94,16 +94,16 @@
                 <li class="fragment gray800">Est code-generé dans le code sous-form d'Enum Java</li>
             </ul>
         </section>
-        <section class="twocolumn black fragment present" data-transition="fade-out">
+        <section class="twocolumn white fragment present" data-transition="fade-out">
             <article>
                 <div class="halfpage flushleft">
-                    <h2>Enum Java</h2>
-                    <p>Une hierarchie entre les champs du formulaire</p>
+                    <h2 class="indigo700">Enum Java</h2>
+                    <p class="gray800">Une hierarchie entre les champs du formulaire</p>
                     <ul class="flushleft">
-                        <li>EField</li>
-                        <li>EGroup</li>
-                        <li>EBloc</li>
-                        <li>EScreen</li>
+                        <li class="gray800">EField</li>
+                        <li class="gray800">EGroup</li>
+                        <li class="gray800">EBloc</li>
+                        <li class="gray800">EScreen</li>
                     </ul>
                 </div>
                 <div class="halfpage flushleft">
@@ -130,20 +130,81 @@
         <section data-background="#212121" class="flushleft has-dark-background present" style="top: 111px; display: block;">
             <h1>Conception <span class="indigo300">De l'outil</span></h1>
             <ul>
-                <li class="fragment">Eclipse Sirius</li>
-                <li class="fragment">Application Web</li>
-                <li class="fragment">JSON</li>
+                <li class="fragment">Export des données</li>
                 <li class="fragment">Création d'un graphe</li>
+                <li class="fragment">Interface</li>
             </ul>
         </section>
         <section class="flushleft" data-background="#eeeeee">
             <h1 class="indigo700">Problematique</h1>
-            <ul>
+            <p class="flushright gray800">Adapter le <strong class="deeporange900">code existant</strong> pour le futur outil</p>
+            <p class="flushright gray800">Integré l'outil au <strong class="deeporange900">workflow</strong> de l'entreprise</p>
+            <ul style="display: none;">
                 <li class="gray800">Génération de code</li>
                 <li class="gray800">API Reflection</li>
                 <li class="gray800">Fichier de données</li>
                 <li class="gray800">Interface</li>
             </ul>
+        </section>
+        <section class="flushleft" data-background="http://www.mindlogicsolutions.com/demo/img/slider/html5.jpg">
+            <h2 class=font-shadow">Application Web</h2>
+            <aside class="notes">
+                - Evolution avec le code
+                - Deploiement en meme temps que l'application
+            </aside>
+        </section>
+        <section class="twocolumn white fragment present" data-transition="fade-out">
+            <article>
+                <div class="halfpage flushleft">
+                    <h2 class="indigo700">Tableau JSON</h2>
+                    <p class="gray800">Generer les données sous forme d'un tableau JSON</p>
+                    <div class="fragment">
+                        <h2 class="indigo700">CytoscapeJS</h2>
+                        <p class="gray800">Pouvoir tracer un graphe sur un navigateur</p>
+                    </div>
+                </div>
+                <div class="halfpage flushleft">
+                    <div class="fragment">
+                        <h4>Screen</h4>
+                        <p class="xs flushright"> {
+                            <span class="orange700">"data"</span>: {
+                            <span class="orange700">"label"</span>: "Votre véhicule",
+                            <span class="orange700">"id"</span>: "Vehicule",
+                            <span class="orange700">"type"</span>: "SCREEN"
+                            },
+                            <span class="orange700">"group"</span>: "nodes"
+                            }
+                        </p>
+                    </div>
+                    <div class="fragment">
+                        <h4>Bloc</h4>
+                        <p class="xs flushright"> {
+                            <span class="orange700">"data"</span>: {
+                            <span class="orange700">"label"</span>: "Ma demande",<br>
+                            <span class="orange700">"id"</span>: "BLK_MA_DEMANDE",
+                            <span class="orange700">"parent"</span>: "Vehicule",
+                            <span class="orange700">"type"</span>: "BLOCK"
+                            },
+                            <span class="orange700">"group"</span>: "nodes"
+                            },
+                        </p>
+                    </div>
+                    <div class="fragment">
+                        <h4>Edge</h4>
+                        <p class="xs flushright">  {
+                            <span class="orange700">"data"</span>: {<br>
+                            <span class="orange700">"id"</span>: "SEC_DON_ANEC_HIS_DATE_RETRAIT",
+                            <span class="orange700">"source"</span>: "SEC_DON_ANNUL",<br>
+                            <span class="orange700">"target"</span>: "SEC_HIS_DATE_RETRAIT"
+                            }, <br>
+                            <span class="orange700">"group"</span>: "edges"
+                            },
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <section data-background="../rapport/outil/layout-wireframe.png">
         </section>
         <section class="flushleft">
             <h1>Outil</h1>
