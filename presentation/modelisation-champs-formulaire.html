@@ -53,26 +53,16 @@
             <p class="fragment flushright">1er site indépendant de comparaison d’assurance, lancé en septembre 2012</p>
             <p class="fragment flushright">Un lieu unique pour comparer rapidement des centaines d’offres
                 (assurances auto, moto, MRH, santé et emprunteur)</p>
-            <p class="fragment flushright">Application WEB Java SE</p>
+            <p class="fragment flushright">Application WEB Java</p>
         </section>
         <section class="flushleft">
             <h1>Sujet</h1>
-            <p class="fragment flushright">Mettre en place un outil permettant de visualiser un graphe
-            correpondant aux formulaires présent sur le site</p>
-            <p class="fragment flushright">Adapter le format d'export éxistant</p>
-            <p class="fragment flushright">Proposer des fonctions d'édition et de sauvegarde du graphe</p>
-            <p class="fragment flushright">Superposer des données business au graphe</p>
-        </section>
-        <section class="flushleft"  data-background="#eeeeee">
-            <h1 class="indigo700">MetaModel</h1>
-            <p class="fragment gray800 visible current-fragment" data-fragment-index="0"><strong class="deeporange900">Définition :
-            </strong>Metamodel signifie littéralement modèle du modèle.
-                Il peut être défini comme la représentation d'un point de vue particulier sur des modèles.</p>
-            <ul >
-                <li class="fragment gray800">
-                    Défini les elements du formulaires ainsi que leurs dépendances
-                </li>
-                <li class="fragment gray800">Est code-generé dans le code sous-form d'Enum Java</li>
+            <ul>
+                <li class="fragment flushright">Mettre en place un outil permettant de visualiser un graphe
+                correpondant aux formulaires présent sur le site</li>
+                <li class="fragment flushright">Adapter le format d'export éxistant</li>
+                <li class="fragment flushright">Proposer des fonctions d'édition et de sauvegarde du graphe</li>
+                <li class="fragment flushright">Superposer des données business au graphe</li>
             </ul>
         </section>
         <section class="twocolumn black fragment present" data-transition="fade-out">
@@ -92,44 +82,86 @@
                 </div>
             </article>
         </section>
+        <section class="flushleft"  data-background="#eeeeee">
+            <h1 class="indigo700">MetaModel</h1>
+            <p class="fragment gray800 visible current-fragment" data-fragment-index="0"><strong class="deeporange900">Définition :
+            </strong>Metamodel signifie littéralement modèle du modèle.
+                Il peut être défini comme la représentation d'un point de vue particulier sur des modèles.</p>
+            <ul >
+                <li class="fragment gray800">
+                    Défini les elements du formulaires ainsi que leurs dépendances
+                </li>
+                <li class="fragment gray800">Est code-generé dans le code sous-form d'Enum Java</li>
+            </ul>
+        </section>
         <section class="twocolumn black fragment present" data-transition="fade-out">
             <article>
                 <div class="halfpage flushleft">
                     <h2>Enum Java</h2>
                     <p>Une hierarchie entre les champs du formulaire</p>
                     <ul class="flushleft">
-                        <li>EScreen</li>
-                        <li>EBloc</li>
-                        <li>EGroup</li>
                         <li>EField</li>
+                        <li>EGroup</li>
+                        <li>EBloc</li>
+                        <li>EScreen</li>
                     </ul>
                 </div>
                 <div class="halfpage flushleft">
-                    <img src="img/background-screen-vehicule.jpg" style="max-height: 200px">
-                    <img src="img/background-screen-vehicule.jpg" style="max-height: 200px">
+                    <p class="fragment xs flushright">public <span class="orange700">enum</span> EFieldAuto <span class="orange700">implements</span> FieldID {<br>
+                        <span class="indigo100">VEH_DTL_DEMANDE</span>(<span class="indigo100">LISTBOX</span>, ...</p>
+
+                    <p class="fragment xs flushright">public <span class="orange700">enum</span> EGroupAuto <span class="orange700">implements</span> GroupID {<br>
+                        <span class="indigo100">GRP_VEH_IMMAT</span>(<span class="orange700">"GRP_VEH_IMMAT"</span>,
+                        <span class="indigo100">VEH_DTL_IMMAT_NUM</span>,
+                        <span class="indigo100">VEH_DTL_IMMAT_SERVICE</span>, ...
+
+                    <p class="fragment xs flushright">public <span class="orange700">enum</span> EBlockAuto <span class="orange700">implements</span> BlockID {<br>
+                        <span class="indigo100">BLK_MA_DEMANDE</span>(<span class="orange700">"BLK_MA_DEMANDE"</span>,
+                        <span class="indigo100">VEH_DTL_DEMANDE</span>,
+                        <span class="indigo100">VEH_DTL_CHOIX_RECHERCHE_VEHICULE</span>, ...
+
+                    <p class="fragment xs flushright">public <span class="orange700">enum</span> EScreenAuto <span class="orange700">implements</span> ScreenID {<br>
+                        <span class="indigo100">SCR_VEHICULE</span>(<span class="orange700">"Vehicule"</span>,
+                        <span class="indigo100">BLK_MA_DEMANDE</span>,
+                        <span class="indigo100">BLK_UTILISATION_VEHICULE</span>, ...
                 </div>
             </article>
         </section>
+        <section data-background="#212121" class="flushleft has-dark-background present" style="top: 111px; display: block;">
+            <h1>Conception <span class="indigo300">De l'outil</span></h1>
+            <ul>
+                <li class="fragment">Eclipse Sirius</li>
+                <li class="fragment">Application Web</li>
+                <li class="fragment">JSON</li>
+                <li class="fragment">Création d'un graphe</li>
+            </ul>
+        </section>
         <section class="flushleft" data-background="#eeeeee">
             <h1 class="indigo700">Problematique</h1>
-            <p class="gray800">Génération de code</p>
-            <p class="gray800">API Reflection</p>
-            <p class="gray800">Fichier de données</p>
-            <p class="gray800">Interface</p>
+            <ul>
+                <li class="gray800">Génération de code</li>
+                <li class="gray800">API Reflection</li>
+                <li class="gray800">Fichier de données</li>
+                <li class="gray800">Interface</li>
+            </ul>
         </section>
         <section class="flushleft">
             <h1>Outil</h1>
-            <p>Application WEB</p>
-            <p>CytoscapeJS</p>
-            <p>Tableau JSON</p>
-            <p>Generation du Graphe</p>
+            <ul>
+                <li>Application WEB</li>
+                <li>CytoscapeJS</li>
+                <li>Tableau JSON</li>
+                <li>Generation du Graphe</li>
+            </ul>
         </section>
         <section class="flushleft" data-background="#eeeeee">
             <h1 class="indigo700">Graphe</h1>
-            <p class="gray800">Layout du graphe</p>
-            <p class="gray800">Layout des champs</p>
-            <p class="gray800">Operation sur le graphe</p>
-            <p class="gray800">Données Business</p>
+            <ul>
+                <li class="gray800">Layout du graphe</li>
+                <li class="gray800">Layout des champs</li>
+                <li class="gray800">Operation sur le graphe</li>
+                <li class="gray800">Données Business</li>
+            </ul>
         </section>
         <section data-background="../img/nwx/chat-t-rex-black-01.jpg">
             <h1 class="fragment" style="width:66%">Questions / réponses</h1>
