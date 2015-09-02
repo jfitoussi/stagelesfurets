@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../bower_components/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="../bower_components/reveal.js/lib/css/zenburn.css">
     <link rel="stylesheet" href="../css/lesfurets-theme.css" id="theme">
-    <link rel="stylesheet" href="../css/pair-prog-theme.css" id="theme">
+    <link rel="stylesheet" href="../css/model-champs-theme.css" id="theme">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
     <script>
         if (window.location.search.match(/print-pdf/gi)) {
             var link = document.createElement('link');
@@ -26,12 +27,14 @@
 </head>
 <body>
 <div class="footer">
-    <a href="https://www.lesfurets.com" target="_blank">
-        <img class="logo" src="../img/logo_lesfurets_885x128_no_back.png">
-    </a>
-    <a href="http://www.upmc.fr" target="_blank">
-        <img class="logo" src="http://www.upmc.fr/skins/UPMC/templates/index/resources/img/upmc-logotype.gif">
-    </a>
+    <div style="position: relative;">
+        <a href="https://www.lesfurets.com" target="_blank">
+            <img class="logo" src="../img/logo_lesfurets_885x128_no_back.png">
+        </a>
+        <a href="http://www.upmc.fr" target="_blank">
+            <img class="logo" src="http://www.upmc.fr/skins/UPMC/templates/index/resources/img/upmc-logotype.gif">
+        </a>
+    </div>
 </div>
 <div class="reveal">
     <div class="slides">
@@ -41,11 +44,11 @@
 
             <h2>Jonathan Fitoussi</h2>
         </section>
-        <section class="flushleft" data-background="../img/nwx/lesfurets-background-black-01.jpg">
+        <section class="flushleft" data-background="img/background_overlay.jpg">
             <h2>Jonathan Fitoussi</h2>
 
-            <h3>Étudiant en Master 2 STL/INSTA</h3>
-            <h4>En alternance chez Courtanet, éditeur de logiciel du site LesFurets.com</h4>
+            <h3>Étudiant en <span class="orange200">Master 2 STL/INSTA</span></h3>
+            <h4>En alternance chez Courtanet, éditeur de logiciel du site <span class="indigo200">LesFurets.com</span></h4>
         </section>
         <section class="flushleft" data-background="img/furets-rewards-bg.jpg">
             <h1 class="font-shadow">LesFurets.com</h1>
@@ -65,7 +68,7 @@
                 <li class="fragment">Superposer des données business au graphe</li>
             </ul>
         </section>
-        <section class="twocolumn black fragment present" data-transition="fade-out">
+        <section class="twocolumn black fragment present" data-transition="fade-in slide-out">
             <article>
                 <div class="halfpage flushleft">
                     <h2>Un Formulaire</h2>
@@ -82,7 +85,7 @@
                 </div>
             </article>
         </section>
-        <section class="flushleft"  data-background="#eeeeee">
+        <section class="flushleft"  data-background="#eeeeee" data-transition="convex-out">
             <h1 class="indigo700">MetaModel</h1>
             <p class="fragment gray800 visible current-fragment" data-fragment-index="0"><strong class="deeporange900">Définition :
             </strong>Metamodel signifie littéralement modèle du modèle.
@@ -94,7 +97,7 @@
                 <li class="fragment gray800">Est code-generé dans le code sous-form d'Enum Java</li>
             </ul>
         </section>
-        <section class="twocolumn white fragment present" data-transition="fade-out">
+        <section class="twocolumn white fragment present" data-transition="fade-in slide-out">
             <article>
                 <div class="halfpage flushleft">
                     <h2 class="indigo700">Enum Java</h2>
@@ -146,26 +149,34 @@
                 <li class="gray800">Interface</li>
             </ul>
         </section>
-        <section class="flushleft" data-background="http://www.mindlogicsolutions.com/demo/img/slider/html5.jpg">
-            <h2 class=font-shadow">Application Web</h2>
+        <section class="flushleft" data-background="img/video-blindard-bg.jpg">
+            <h1 class="font-shadow gray200">Application Web</h1>
+            <pre style="visibility: hidden">
+                <code data-trim>
+                public enum EFieldAuto implements FieldID{
+                VEH_DTL_DEMANDE(LISTBOX, "VEH_DTL_DEMANDE", TAG_QUESTION_HOMEPAGE), //
+                /**
+                * @see #SEC_SUPPRESSION
+                */
+                VEH_DTL_SECOND(LISTBOX, "VEH_DTL_SECOND"), //
+                VEH_DTL_TITULAIRE(LISTBOX, "VEH_DTL_TITULAIRE"), //
+                </code>
+            </pre>
             <aside class="notes">
                 - Evolution avec le code
                 - Deploiement en meme temps que l'application
             </aside>
         </section>
-        <section class="twocolumn white fragment present" data-transition="fade-out">
+        <section class="twocolumn white fragment present" data-transition="fade-in slide-out">
             <article>
                 <div class="halfpage flushleft">
-                    <h2 class="indigo700">Tableau JSON</h2>
-                    <p class="gray800">Generer les données sous forme d'un tableau JSON</p>
-                    <div class="fragment">
-                        <h2 class="indigo700">CytoscapeJS</h2>
-                        <p class="gray800">Pouvoir tracer un graphe sur un navigateur</p>
-                    </div>
+                    <h2 class="indigo700">Données JSON</h2>
+                    <p class="fragment gray800">Utilisé la generation de code</p>
+                    <p class="fragment current-fragment gray800">Generer les données sous forme d'un tableau d'élément</p>
                 </div>
                 <div class="halfpage flushleft">
                     <div class="fragment">
-                        <h4>Screen</h4>
+                        <h6>Screen</h6>
                         <p class="xs flushright"> {
                             <span class="orange700">"data"</span>: {
                             <span class="orange700">"label"</span>: "Votre véhicule",
@@ -177,7 +188,7 @@
                         </p>
                     </div>
                     <div class="fragment">
-                        <h4>Bloc</h4>
+                        <h6>Bloc</h6>
                         <p class="xs flushright"> {
                             <span class="orange700">"data"</span>: {
                             <span class="orange700">"label"</span>: "Ma demande",<br>
@@ -190,7 +201,7 @@
                         </p>
                     </div>
                     <div class="fragment">
-                        <h4>Edge</h4>
+                        <h6>Edge</h6>
                         <p class="xs flushright">  {
                             <span class="orange700">"data"</span>: {<br>
                             <span class="orange700">"id"</span>: "SEC_DON_ANEC_HIS_DATE_RETRAIT",
@@ -204,25 +215,68 @@
                 </div>
             </article>
         </section>
-        <section data-background="../rapport/outil/layout-wireframe.png">
+        <section data-background="#d84315">
+            <h3><span class="step">Graphe en Javascript</span> CytoscapeJS</h3>
+            <p class="flushright fragment gray900">Tracer un graphe</p>
+            <p class="flushright fragment gray900">Exploration</p>
+            <p class="flushright fragment gray900">Edition</p>
+            <aside class="notes">
+            </aside>
         </section>
-        <section class="flushleft">
-            <h1>Outil</h1>
-            <ul>
-                <li>Application WEB</li>
-                <li>CytoscapeJS</li>
-                <li>Tableau JSON</li>
-                <li>Generation du Graphe</li>
-            </ul>
+        <section data-background="img/layout-random-2.png">
         </section>
-        <section class="flushleft" data-background="#eeeeee">
-            <h1 class="indigo700">Graphe</h1>
-            <ul>
-                <li class="gray800">Layout du graphe</li>
-                <li class="gray800">Layout des champs</li>
-                <li class="gray800">Operation sur le graphe</li>
-                <li class="gray800">Données Business</li>
-            </ul>
+        <section class="twocolumn black" data-transition="fade-out">
+            <article>
+                <div class="halfpage flushright">
+                    <h3><strong>Layout du graphe</strong></h3>
+                </div>
+                <div class="halfpage flushleft">
+                    <ul>
+                        <li>Positionnement</li>
+                        <li>Information</li>
+                        <li>Espacement</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="fragment">
+                <div class="halfpage flushright">
+                    <ul>
+                        <li>Type de champs</li>
+                        <li>Peut contenir</li>
+                        <li>Design des "inputs"</li>
+                    </ul>
+                </div>
+                <div class="halfpage flushleft">
+                    <h3><strong>Element</strong></h3>
+                </div>
+            </article>
+            <aside class="notes">&
+                pilote
+                - code (juste ça bien), mais aussi parle, sinon déconnection
+                copilote
+                - penses aux cas limites, aux tests, etc.
+                - navigateur court terme / long terme
+                - se rappelle des choses pour plus tard
+            </aside>
+        </section>
+        <section data-background="img/layout-clean.png">
+        </section>
+        <section data-background="#d84315">
+            <h3><span class="step">Opération</span> sur le graphe</h3>
+            <p class="flushright fragment gray900">Recherche</p>
+            <p class="flushright fragment gray900">Édition de données</p>
+            <p class="flushright fragment gray900">Sauvegarde du graphe</p>
+            <p class="flushright fragment gray900">Chargement d'un graphe</p>
+            <aside class="notes">
+            </aside>
+        </section>
+        <section data-background="#d84315">
+            <h3><span class="step">Exploitation</span> du graphe</h3>
+            <p class="flushright fragment gray900">Differences</p>
+            <p class="flushright fragment gray900">Versionnement des modifications</p>
+            <p class="flushright fragment gray900">Superposition données des utilisateurs</p>
+            <aside class="notes">
+            </aside>
         </section>
         <section data-background="../img/nwx/chat-t-rex-black-01.jpg">
             <h1 class="fragment" style="width:66%">Questions / réponses</h1>
