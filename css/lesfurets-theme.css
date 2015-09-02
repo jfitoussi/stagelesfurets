@@ -370,3 +370,6 @@ body {
 .font-shadow {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.6)!important;
 }
+.reveal .slides > section, .reveal .slides > section > section {
+    padding: 0px;
+}
