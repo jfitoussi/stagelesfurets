@@ -26,7 +26,7 @@
     <script src="lib/js/html5shiv.js"></script><![endif]-->
 </head>
 <body>
-<div class="footer">
+<div id="bottombar" class="footer">
     <div style="position: relative;">
         <a href="https://www.lesfurets.com" target="_blank">
             <img class="logo" src="../img/logo_lesfurets_885x128_no_back.png">
@@ -48,7 +48,7 @@
             <h2>Jonathan Fitoussi</h2>
 
             <h3>Étudiant en <span class="orange200">Master 2 STL/INSTA</span></h3>
-            <h4>En alternance chez Courtanet, éditeur de logiciel du site <span class="indigo200">LesFurets.com</span></h4>
+            <h4>En alternance chez Courtanet, éditeur du site <span class="indigo200">LesFurets.com</span></h4>
         </section>
         <section class="flushleft" data-background="img/furets-rewards-bg.jpg">
             <h1 class="font-shadow">LesFurets.com</h1>
@@ -56,8 +56,8 @@
             <p class="fragment flushright font-shadow">1er site indépendant de comparaison d’assurance, lancé en septembre 2012</p>
             <p class="fragment flushright font-shadow">Un lieu unique pour comparer rapidement des centaines d’offres
                 (assurances auto, moto, MRH, santé et emprunteur)</p>
-            <p class="fragment flushright font-shadow">Application WEB Java</p>
-            <aside class="notes">
+            <p class="fragment flushright font-shadow">Application Web Java</p>
+            <aside class="notes" data-markdown>
                 * Historique AssureMieux
                 * Marque forte
                 * Application qui permet de dialoguer de maniere presque instantanée avec les webservices d'une vingtaine d'assureur
@@ -70,12 +70,12 @@
             <ul class="">
                 <li class="fragment">Formulaire permettant aux utilisateurs de cibler leurs besoins</li>
                 <li class="fragment">Mettre en place un outil permettant de visualiser un graphe
-                correpondant aux formulaires présent sur le site</li>
-                <li class="fragment">Adapter le format d'export éxistant</li>
+                correspondant aux formulaires présents sur le site</li>
+                <li class="fragment">Adapter le format d'export existant</li>
                 <li class="fragment">Proposer des fonctions de gestion du graphe</li>
-                <li class="fragment">Superposer des données business au graphe</li>
+                <li class="fragment">Superposer des données "business" au graphe</li>
             </ul>
-            <aside class="notes">
+            <aside class="notes" data-markdown>
                 * Formulaires chez les furets
                 * Premet de cibler le besoin chez un utilisateur
                 * Sujet deja evoquer par les equipes dans les chantiers techniques possible
@@ -87,7 +87,7 @@
             <article>
                 <div class="halfpage flushleft">
                     <h2>Un Formulaire</h2>
-                    <p>Une hierarchie entre les champs du formulaire</p>
+                    <p>Une hiérarchie entre les éléments du formulaire</p>
                     <ul class="flushleft">
                         <li>Écran</li>
                         <li>Bloc</li>
@@ -99,24 +99,36 @@
                     <img src="img/background-screen-vehicule.jpg" style="max-height: 400px">
                 </div>
             </article>
+            <aside class="notes" data-markdown>
+                * Formulaire point centrale du parcours utilisateur
+                * Est decouper selon une hierachie
+                * Contenant a contenu
+                * Groupe toujours contenue dans un bloc
+            </aside>
         </section>
         <section class="flushleft"  data-background="#eeeeee" data-transition="convex-out">
             <h1 class="indigo700">MetaModel</h1>
-            <p class="fragment gray800 visible current-fragment" data-fragment-index="0"><strong class="deeporange900">Définition :
-            </strong>Metamodel signifie littéralement modèle du modèle.
-                Il peut être défini comme la représentation d'un point de vue particulier sur des modèles.</p>
+            <p class="fragment gray800 visible current-fragment" data-fragment-index="0">
+                <strong class="deeporange900">Définition : </strong>
+                <span class="fragment">Metamodel signifie littéralement modèle du modèle.</span>
+            </p>
             <ul >
                 <li class="fragment gray800">
-                    Défini les elements du formulaires ainsi que leurs dépendances
+                    Défini les éléments d'un formulaire ainsi que leurs dépendances
                 </li>
-                <li class="fragment gray800">Est code-generé dans le code sous-form d'Enum Java</li>
+                <li class="fragment gray800">Est code-géneré sous forme d'Enum Java</li>
             </ul>
+            <aside class="notes" data-markdown>
+                * Model de donnée exprimer dans le code
+                * Niveau d'abstraction
+                * Permet d'exprimer les données selon le besoin premier
+            </aside>
         </section>
         <section class="twocolumn white fragment present" data-transition="fade-in slide-out">
             <article>
                 <div class="halfpage flushleft">
                     <h2 class="indigo700">Enum Java</h2>
-                    <p class="gray800">Une hierarchie entre les champs du formulaire</p>
+                    <p class="gray800">Une hiérarchie entre les champs du formulaire</p>
                     <ul class="flushleft">
                         <li class="gray800">EField</li>
                         <li class="gray800">EGroup</li>
@@ -144,25 +156,37 @@
                         <span class="indigo100">BLK_UTILISATION_VEHICULE</span>, ...
                 </div>
             </article>
+            <aside class="notes" data-markdown>
+                * Modele de donnée ID pour tous les formulaires
+                * Specifie au moment de l'integration dans le formulaire de l'assurance souhaité
+                * type et dependances lister dans des enums
+                * Code generation d'outil permettant de recuperer les attributs d'un champs
+            </aside>
         </section>
         <section data-background="#212121" class="flushleft has-dark-background present" style="top: 111px; display: block;">
-            <h1>Conception <span class="indigo300">De l'outil</span></h1>
+            <h1>Conception <span class="indigo300">de l'outil</span></h1>
             <ul>
                 <li class="fragment">Export des données</li>
                 <li class="fragment">Création d'un graphe</li>
                 <li class="fragment">Interface</li>
             </ul>
+            <aside class="notes" data-markdown>
+                * Rester sur un fichier plat pour les données
+                * Definir un nouveau format pour la creation d'un graph
+                * 2 pistes pour l'interface
+            </aside>
         </section>
         <section class="flushleft" data-background="#eeeeee">
-            <h1 class="indigo700">Problematique</h1>
+            <h1 class="indigo700">Problèmatique</h1>
             <p class="flushright gray800">Adapter le <strong class="deeporange900">code existant</strong> pour le futur outil</p>
-            <p class="flushright gray800">Integré l'outil au <strong class="deeporange900">workflow</strong> de l'entreprise</p>
-            <ul style="display: none;">
-                <li class="gray800">Génération de code</li>
-                <li class="gray800">API Reflection</li>
-                <li class="gray800">Fichier de données</li>
-                <li class="gray800">Interface</li>
-            </ul>
+            <p class="flushright gray800">Integrer l'outil au <strong class="deeporange900">workflow</strong> de l'entreprise</p>
+            <p class="flushright gray800">Développement integré au <strong class="deeporange900">process </strong> de l'équipe</p>
+            <aside class="notes" data-markdown>
+                * Se servir de la generationde code mdxml et csv
+                * Reagir dans les process de l'equipe
+                * Mise en place du kanban, decoupe
+                * TDD Ticket Branch Rebase
+            </aside>
         </section>
         <section class="flushleft" data-background="img/video-blindard-bg.jpg">
             <h1 class="font-shadow gray200">Application Web</h1>
@@ -177,7 +201,7 @@
                 VEH_DTL_TITULAIRE(LISTBOX, "VEH_DTL_TITULAIRE"), //
                 </code>
             </pre>
-            <aside class="notes">
+            <aside class="notes" data-markdown>
                 - Evolution avec le code
                 - Deploiement en meme temps que l'application
             </aside>
@@ -186,12 +210,12 @@
             <article>
                 <div class="halfpage flushleft">
                     <h2 class="indigo700">Données JSON</h2>
-                    <p class="fragment gray800">Utilisé la generation de code</p>
-                    <p class="fragment current-fragment gray800">Generer les données sous forme d'un tableau d'élément</p>
+                    <p class="fragment gray800">Utiliser la génération de code</p>
+                    <p class="fragment current-fragment gray800">Générer les données sous forme d'un tableau d'éléments</p>
                 </div>
                 <div class="halfpage flushleft">
                     <div class="fragment">
-                        <h6>Screen</h6>
+                        <h6>Noeud Ecran</h6>
                         <p class="xs flushright"> {
                             <span class="orange700">"data"</span>: {
                             <span class="orange700">"label"</span>: "Votre véhicule",
@@ -203,7 +227,7 @@
                         </p>
                     </div>
                     <div class="fragment">
-                        <h6>Bloc</h6>
+                        <h6>Noeud Bloc</h6>
                         <p class="xs flushright"> {
                             <span class="orange700">"data"</span>: {
                             <span class="orange700">"label"</span>: "Ma demande",<br>
@@ -216,7 +240,7 @@
                         </p>
                     </div>
                     <div class="fragment">
-                        <h6>Edge</h6>
+                        <h6>Arête du graphe</h6>
                         <p class="xs flushright">  {
                             <span class="orange700">"data"</span>: {<br>
                             <span class="orange700">"id"</span>: "SEC_DON_ANEC_HIS_DATE_RETRAIT",
@@ -229,6 +253,11 @@
                     </div>
                 </div>
             </article>
+            <aside class="notes" data-markdown>
+                * Comprendre la generation de code, cycle de vie
+                * Api de Reflection Java en passant un classLoader
+                * Fichier JSON en GSON
+            </aside>
         </section>
         <section data-background="#d84315">
             <h3><span class="step">Graphe en Javascript</span> CytoscapeJS</h3>
@@ -244,7 +273,7 @@
         <section class="twocolumn black" data-transition="fade-out">
             <article>
                 <div class="halfpage flushright">
-                    <h3><strong>Layout du graphe</strong></h3>
+                    <h3><strong>Style du graphe</strong></h3>
                 </div>
                 <div class="halfpage flushleft">
                     <ul>
@@ -257,13 +286,13 @@
             <article class="fragment">
                 <div class="halfpage flushright">
                     <ul>
-                        <li>Type de champs</li>
+                        <li>Type de champ</li>
                         <li>Peut contenir</li>
-                        <li>Design des "inputs"</li>
+                        <li>Design</li>
                     </ul>
                 </div>
                 <div class="halfpage flushleft">
-                    <h3><strong>Element</strong></h3>
+                    <h3><strong>Style d'un élément</strong></h3>
                 </div>
             </article>
             <aside class="notes">&
@@ -279,7 +308,7 @@
             <h1 style="visibility: hidden">Propre</h1>
         </section>
         <section data-background="#eeeeee">
-            <h3><span class="step indigo700">Opération</span> <span class="deeporange900">sur le graphe</span></h3>
+            <h3><span class="step indigo700">Opération</span><span class="deeporange900"> sur le graphe</span></h3>
             <p class="flushright fragment gray800">Recherche</p>
             <p class="flushright fragment gray800">Édition de données</p>
             <p class="flushright fragment gray800">Sauvegarde du graphe</p>
@@ -289,22 +318,22 @@
         </section>
         <section data-background="#212121">
             <h3><span class="step gray200">Exploitation</span> <span class="indigo300">du graphe</span></h3>
-            <p class="flushright fragment">Differences</p>
+            <p class="flushright fragment">Différences</p>
             <p class="flushright fragment">Versionnement des modifications</p>
-            <p class="flushright fragment">Superposition données des utilisateurs</p>
+            <p class="flushright fragment">Superposition des données utilisateurs</p>
             <aside class="notes">
             </aside>
         </section>
-        <section data-background="http://www.infoveto.com/wp-content/uploads/2013/03/furet-dehors.jpg">
+        <section data-background="img/furet-dehors.jpg">
             <h1 class="" style="visibility: hidden">Conclusion</h1>
 
             <p class="flushright"><strong></strong></p>
         </section>
         <section class="flushright">
             <h1 class="orange700">Conclusion</h1>
-            <p class="fragment">Developée un outil en se servant d'une technologie existante</p>
-            <p class="fragment">S'adapter au workflow d'une equipe de developpement</p>
-            <p class="fragment">Challengé les equipes fonctionnels</p>
+            <p class="fragment">Développer un outil en se servant d'une technologie existante</p>
+            <p class="fragment">S'adapter au workflow d'une équipe de développement</p>
+            <p class="fragment">Challenger les équipes fonctionnelles</p>
         </section>
         <!-- END -->
     </div>

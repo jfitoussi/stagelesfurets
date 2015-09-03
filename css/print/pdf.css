@@ -39,8 +39,7 @@ html {
 .reveal.overview,
 .fork-reveal,
 .share-reveal,
-.state-background
-.footer {
+.state-background {
 	display: none !important;
 }
 
@@ -157,5 +156,9 @@ ul, ol, div, p {
 }
 .reveal .twocolumn:before {
 	height: 99%;
+}
+
+.footer {
+	display: none;
 }
 
