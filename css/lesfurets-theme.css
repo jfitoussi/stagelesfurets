@@ -68,12 +68,9 @@
  *********************************************/
 body {
     background-color: #1a237e;
-    /*
-    background-color: #3335a2;
-    background-image: url("../../img/bg-dots.png"), radial-gradient(circle 1000px at top center, #3439b3 40%, #161875 60%);
-    background-image: url("../../img/bg-dots.png"), -webkit-radial-gradient(top center, circle 1000px, #3439b3 40%, #161875 60%);
-    background-image: url("../../img/bg-dots.png"),radial-gradient(circle 1000px at top center, #3439b3 40%, #161875 60%);
-    */
+    background-image: url("../img/bg-dots.png"), radial-gradient(circle 1000px at top center, #3439b3 40%, #161875 60%);
+    background-image: url("../img/bg-dots.png"), -webkit-radial-gradient(top center, circle 1000px, #3439b3 40%, #161875 60%);
+    background-image: url("../img/bg-dots.png"),radial-gradient(circle 1000px at top center, #3439b3 40%, #161875 60%);
 }
 
 .reveal {
